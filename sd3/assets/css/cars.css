@@ -1,0 +1,215 @@
+/* ===== CARS PAGE CSS ===== */
+
+.cars-page {
+  padding: 80px 0 120px;
+  background: #f8fafc;
+}
+
+/* FILTER BAR */
+.filter-bar {
+  display: flex;
+  gap: 16px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.filter-bar select {
+  padding: 10px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  color: #334155;
+  cursor: pointer;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.filter-bar select:focus {
+  border-color: #facc15;
+}
+
+/* CARS GRID */
+.cars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
+  margin-top: 10px;
+}
+
+/* CAR LINK WRAPPER */
+.car-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* CAR CARD */
+.car-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.07);
+  transition: transform .4s cubic-bezier(.22,1,.36,1),
+              box-shadow .4s;
+  position: relative;
+}
+
+.car-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 40px 80px rgba(0,0,0,.35);
+}
+
+.car-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+/* WISHLIST BUTTON */
+.wishlist-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+  z-index: 2;
+  transition: background 0.2s;
+}
+
+.wishlist-btn.active {
+  background: #facc15;
+}
+
+/* CAR INFO */
+.car-info {
+  padding: 18px;
+}
+
+.car-info h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.car-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #facc15;
+  background: #0f172a;
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.car-meta-text {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 14px;
+}
+
+/* CAR ACTIONS */
+.car-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.compare-btn {
+  padding: 8px 14px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #334155;
+  transition: 0.2s;
+  font-weight: 500;
+}
+
+.compare-btn:hover {
+  border-color: #facc15;
+  color: #0f172a;
+}
+
+.small-btn {
+  padding: 8px 14px;
+  background: #0f172a;
+  color: white;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+  border: none;
+}
+
+.small-btn:hover {
+  background: #facc15;
+  color: #0f172a;
+}
+
+/* COMPARE BAR (sticky bottom) */
+.compare-bar {
+  position: fixed;
+  bottom: -80px;
+  left: 0;
+  width: 100%;
+  background: #0f172a;
+  color: white;
+  padding: 16px 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 999;
+  transition: bottom 0.4s ease;
+  box-shadow: 0 -5px 30px rgba(0,0,0,0.3);
+}
+
+.compare-bar.show {
+  bottom: 0;
+}
+
+.compare-bar span {
+  font-weight: 500;
+  flex: 1;
+}
+
+.clear-btn {
+  background: transparent;
+  border: 1px solid #94a3b8;
+  color: #94a3b8;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.clear-btn:hover {
+  border-color: white;
+  color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .cars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+  }
+
+  .filter-bar select {
+    width: 100%;
+  }
+}

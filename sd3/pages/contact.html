@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us | SmartDrive Pro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <style>
+    :root { --primary:#0f172a; --secondary:#facc15; --bg-light:#f8fafc; --text-dark:#020617; --muted:#94a3b8; }
+
+    /* HERO */
+    .contact-hero {
+      position: relative;
+      min-height: 50vh;
+      background: linear-gradient(135deg, #020617, #0f172a 60%, #1e293b);
+      display: flex; align-items: center;
+      padding: 140px 0 80px;
+      overflow: hidden;
+    }
+    .contact-hero .overlay {
+      position:absolute; inset:0;
+      background: radial-gradient(circle at 25% 40%, rgba(250,204,21,.12),transparent 45%),
+                  radial-gradient(circle at 75% 60%, rgba(59,130,246,.1),transparent 45%);
+    }
+    .contact-hero .glow { position:absolute; width:360px; height:360px; border-radius:50%; filter:blur(110px); opacity:.4; }
+    .contact-hero .g1 { background:#facc15; top:-80px; left:-80px; }
+    .contact-hero .g2 { background:#3b82f6; bottom:-80px; right:-80px; }
+    .ch-inner { position:relative; z-index:2; text-align:center; color:white; }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(250,204,21,.12); border:1px solid rgba(250,204,21,.3);
+      color:#facc15; padding:6px 18px; border-radius:100px;
+      font-size:13px; font-weight:500; margin-bottom:24px;
+      animation: fadeUp .6s ease both;
+    }
+    .contact-hero h1 {
+      font-family:'Poppins',sans-serif; font-size:clamp(34px,5.5vw,58px);
+      font-weight:800; line-height:1.1; animation:fadeUp .7s ease .1s both;
+    }
+    .contact-hero h1 span { color:#facc15; }
+    .contact-hero p {
+      max-width:520px; margin:18px auto 0; color:#cbd5e1;
+      font-size:16px; line-height:1.7; animation:fadeUp .7s ease .2s both;
+    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:none} }
+
+    /* CONTACT GRID */
+    .contact-section { padding:100px 0; background:#f8fafc; }
+    .contact-wrapper { display:grid; grid-template-columns:1fr 1.4fr; gap:60px; align-items:start; }
+
+    /* LEFT — INFO */
+    .contact-info {}
+    .ci-badge {
+      display:inline-block; background:rgba(250,204,21,.12); color:#b45309;
+      font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+      padding:5px 14px; border-radius:100px; margin-bottom:16px;
+    }
+    .contact-info h2 {
+      font-family:'Poppins',sans-serif; font-size:clamp(26px,3vw,36px);
+      font-weight:700; color:#0f172a; line-height:1.2; margin-bottom:16px;
+    }
+    .contact-info h2 span { color:#facc15; }
+    .contact-info > p { font-size:15px; color:#475569; line-height:1.75; margin-bottom:36px; }
+
+    .info-cards { display:flex; flex-direction:column; gap:16px; }
+    .info-card {
+      background:#fff; border:1px solid #e2e8f0; border-radius:16px;
+      padding:22px; display:flex; align-items:flex-start; gap:16px;
+      transition:.25s;
+    }
+    .info-card:hover { border-color:#facc15; box-shadow:0 8px 30px rgba(250,204,21,.12); transform:translateY(-2px); }
+    .ic-icon {
+      width:46px; height:46px; background:rgba(250,204,21,.1); border:1px solid rgba(250,204,21,.25);
+      border-radius:12px; display:flex; align-items:center; justify-content:center;
+      font-size:20px; flex-shrink:0; transition:.25s;
+    }
+    .info-card:hover .ic-icon { background:#facc15; }
+    .ic-text h4 { font-family:'Poppins',sans-serif; font-size:14px; font-weight:700; color:#0f172a; margin-bottom:4px; }
+    .ic-text p  { font-size:14px; color:#64748b; line-height:1.5; }
+    .ic-text a  { color:#0f172a; text-decoration:none; transition:.2s; }
+    .ic-text a:hover { color:#facc15; }
+
+    .contact-hours {
+      background:linear-gradient(135deg,#020617,#1e293b);
+      border-radius:16px; padding:26px; margin-top:20px; color:white;
+    }
+    .contact-hours h4 { font-family:'Poppins',sans-serif; font-size:16px; font-weight:700; margin-bottom:16px; }
+    .contact-hours h4 span { color:#facc15; }
+    .hours-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.07); font-size:14px; }
+    .hours-row:last-child { border-bottom:none; }
+    .hours-row .day { color:#94a3b8; }
+    .hours-row .time { font-weight:600; color:white; }
+    .hours-row .time.open { color:#4ade80; }
+
+    /* RIGHT — FORM */
+    .contact-form-wrap {
+      background:#fff; border-radius:24px; padding:48px;
+      box-shadow:0 20px 60px rgba(2,6,23,.07);
+      border:1px solid #e2e8f0;
+    }
+    .cf-header { margin-bottom:32px; }
+    .cf-header h3 { font-family:'Poppins',sans-serif; font-size:24px; font-weight:700; color:#0f172a; }
+    .cf-header p { font-size:14px; color:#64748b; margin-top:6px; }
+
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .form-group { margin-bottom:20px; }
+    .form-group label {
+      display:block; font-size:13px; font-weight:600;
+      color:#374151; margin-bottom:7px; letter-spacing:.02em;
+    }
+    .form-group label span { color:#facc15; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width:100%; padding:13px 16px;
+      border:1.5px solid #e2e8f0; border-radius:10px;
+      font-family:'Inter',sans-serif; font-size:14px; color:#0f172a;
+      background:#f8fafc; outline:none;
+      transition:.25s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color:#facc15; background:#fff;
+      box-shadow:0 0 0 3px rgba(250,204,21,.15);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color:#94a3b8; }
+    .form-group select { cursor:pointer; -webkit-appearance:none; appearance:none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat:no-repeat; background-position:right 16px center;
+    }
+    .form-group textarea { resize:vertical; min-height:120px; }
+    .subject-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    .chip {
+      padding:6px 14px; background:#f1f5f9; border:1.5px solid #e2e8f0;
+      border-radius:100px; font-size:12px; font-weight:500; color:#475569;
+      cursor:pointer; transition:.2s; user-select:none;
+    }
+    .chip.active, .chip:hover { background:#facc15; border-color:#facc15; color:#000; }
+    .submit-btn {
+      width:100%; padding:15px; background:#facc15; color:#000;
+      border:none; border-radius:12px; font-family:'Poppins',sans-serif;
+      font-size:16px; font-weight:700; cursor:pointer; transition:.3s;
+      display:flex; align-items:center; justify-content:center; gap:10px;
+    }
+    .submit-btn:hover { transform:translateY(-3px); box-shadow:0 14px 35px rgba(250,204,21,.4); }
+    .submit-btn .btn-icon { font-size:18px; transition:.3s; }
+    .submit-btn:hover .btn-icon { transform:translateX(4px); }
+
+    /* SUCCESS STATE */
+    .success-state {
+      text-align:center; padding:60px 40px; display:none;
+    }
+    .success-state .s-ico { font-size:72px; margin-bottom:20px; animation:bounce .6s ease; }
+    @keyframes bounce { 0%{transform:scale(0)} 60%{transform:scale(1.15)} 100%{transform:scale(1)} }
+    .success-state h3 { font-family:'Poppins',sans-serif; font-size:26px; font-weight:700; color:#0f172a; }
+    .success-state p { color:#64748b; font-size:15px; margin:10px 0 28px; line-height:1.6; }
+    .success-state a { padding:12px 28px; background:#facc15; color:#000; border-radius:10px; font-weight:700; text-decoration:none; transition:.3s; display:inline-block; }
+    .success-state a:hover { transform:translateY(-2px); }
+
+    /* LOCATIONS */
+    .locations-section { padding:80px 0; background:#fff; }
+    .sec-center { text-align:center; margin-bottom:56px; }
+    .sec-center .badge {
+      display:inline-block; background:rgba(250,204,21,.12); color:#b45309;
+      font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+      padding:5px 14px; border-radius:100px; margin-bottom:14px;
+    }
+    .sec-center h2 { font-family:'Poppins',sans-serif; font-size:clamp(24px,3vw,36px); font-weight:700; color:#0f172a; }
+    .sec-center h2 span { color:#facc15; }
+    .loc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+    .loc-card {
+      background:#f8fafc; border:1px solid #e2e8f0; border-radius:18px;
+      padding:28px; text-align:center; transition:.3s;
+    }
+    .loc-card:hover { border-color:#facc15; transform:translateY(-5px); box-shadow:0 18px 40px rgba(250,204,21,.1); }
+    .loc-icon { font-size:36px; margin-bottom:14px; }
+    .loc-card h4 { font-family:'Poppins',sans-serif; font-size:17px; font-weight:700; color:#0f172a; margin-bottom:6px; }
+    .loc-card p { font-size:13px; color:#64748b; line-height:1.5; }
+    .loc-tag {
+      display:inline-block; margin-top:10px;
+      background:rgba(250,204,21,.1); color:#b45309;
+      font-size:11px; font-weight:600; padding:3px 10px; border-radius:100px;
+    }
+
+    /* FAQ */
+    .faq-block { padding:80px 0; background:#f8fafc; }
+    .faq-inner { max-width:740px; margin:0 auto; }
+    .faq-item {
+      background:#fff; border:1px solid #e2e8f0; border-radius:14px;
+      margin-bottom:12px; overflow:hidden; transition:.25s;
+    }
+    .faq-item:hover { border-color:#facc15; }
+    .faq-q {
+      padding:20px 24px; font-weight:600; font-size:15px; color:#0f172a;
+      cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;
+    }
+    .faq-q .arrow { font-size:18px; color:#facc15; transition:transform .3s; flex-shrink:0; }
+    .faq-item.open .faq-q .arrow { transform:rotate(45deg); }
+    .faq-a {
+      max-height:0; overflow:hidden;
+      transition:max-height .4s ease, padding .3s ease;
+      font-size:14px; color:#475569; line-height:1.7; padding:0 24px;
+    }
+    .faq-item.open .faq-a { max-height:200px; padding:0 24px 20px; }
+
+    /* SCROLL REVEAL */
+    .reveal { opacity:0; transform:translateY(32px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+    .reveal-l { opacity:0; transform:translateX(-32px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal-l.visible { opacity:1; transform:none; }
+    .reveal-r { opacity:0; transform:translateX(32px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal-r.visible { opacity:1; transform:none; }
+    .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s}
+
+    @media(max-width:1000px) { .loc-grid{grid-template-columns:repeat(2,1fr)} }
+    @media(max-width:768px) {
+      .contact-wrapper{grid-template-columns:1fr;gap:40px}
+      .form-row{grid-template-columns:1fr}
+      .contact-form-wrap{padding:32px 24px}
+      .loc-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:480px) { .loc-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<header class="navbar scrolled" id="navbar">
+  <div class="container nav-container">
+    <div class="logo"><a href="../index.html">SmartDrive<span>Pro</span></a></div>
+    <nav class="nav-links" id="navLinks">
+      <a href="../index.html">Home</a>
+      <a href="cars.html">Cars</a>
+      <a href="compare.html">Compare</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="login.html" class="btn login-btn">Login</a>
+      <a href="login.html#register" class="btn register-btn">Register</a>
+    </div>
+    <div class="menu-toggle" id="menuToggle">&#9776;</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="contact-hero">
+  <div class="overlay"></div>
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="container ch-inner">
+    <div class="hero-badge">📞 We're Always Here for You</div>
+    <h1>Get in <span>Touch</span> With Us</h1>
+    <p>Have a question, need support, or want to book a fleet for your business? Our team responds within 30 minutes.</p>
+  </div>
+</section>
+
+<!-- CONTACT MAIN -->
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-wrapper">
+
+      <!-- LEFT -->
+      <div class="reveal-l">
+        <span class="ci-badge">Contact Information</span>
+        <h2>We'd Love to <span>Hear From You</span></h2>
+        <p>Reach out through any channel below — our expert team is standing by to assist you, 24 hours a day, 7 days a week.</p>
+
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="ic-icon">📞</div>
+            <div class="ic-text">
+              <h4>Call Us Anytime</h4>
+              <p><a href="tel:+918000123456">+91 80001 23456</a> &nbsp;|&nbsp; <a href="tel:+918000654321">+91 80006 54321</a></p>
+              <p style="margin-top:4px;font-size:12px;color:#94a3b8">Available 24/7 · No wait times</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="ic-icon">✉️</div>
+            <div class="ic-text">
+              <h4>Email Support</h4>
+              <p><a href="mailto:support@smartdrivepro.in">support@smartdrivepro.in</a></p>
+              <p><a href="mailto:bookings@smartdrivepro.in">bookings@smartdrivepro.in</a></p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="ic-icon">💬</div>
+            <div class="ic-text">
+              <h4>Live Chat & WhatsApp</h4>
+              <p><a href="#">Chat with us on WhatsApp</a> — fastest response, typically under 5 minutes.</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="ic-icon">📍</div>
+            <div class="ic-text">
+              <h4>Head Office</h4>
+              <p>SmartDrive Pro HQ, Level 12, One BKC, Bandra Kurla Complex, Mumbai – 400051</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-hours">
+          <h4>Business <span>Hours</span></h4>
+          <div class="hours-row"><span class="day">Monday – Friday</span><span class="time open">9:00 AM – 9:00 PM</span></div>
+          <div class="hours-row"><span class="day">Saturday</span><span class="time open">10:00 AM – 7:00 PM</span></div>
+          <div class="hours-row"><span class="day">Sunday</span><span class="time open">11:00 AM – 5:00 PM</span></div>
+          <div class="hours-row"><span class="day">Emergency Support</span><span class="time open">24/7 Available</span></div>
+        </div>
+      </div>
+
+      <!-- RIGHT — FORM -->
+      <div class="reveal-r">
+        <div class="contact-form-wrap" id="contactFormWrap">
+          <div id="formView">
+            <div class="cf-header">
+              <h3>Send Us a Message</h3>
+              <p>Fill in the form and we'll get back to you within 30 minutes during business hours.</p>
+            </div>
+            <form id="contactForm" onsubmit="submitContact(event)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Full Name <span>*</span></label>
+                  <input type="text" id="cName" placeholder="Arjun Mehta" required>
+                </div>
+                <div class="form-group">
+                  <label>Email Address <span>*</span></label>
+                  <input type="email" id="cEmail" placeholder="arjun@example.com" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Phone Number</label>
+                  <input type="tel" id="cPhone" placeholder="+91 98765 43210">
+                </div>
+                <div class="form-group">
+                  <label>City</label>
+                  <select id="cCity">
+                    <option value="">Select your city</option>
+                    <option>Mumbai</option><option>Delhi</option><option>Bengaluru</option>
+                    <option>Hyderabad</option><option>Pune</option><option>Chennai</option>
+                    <option>Kolkata</option><option>Ahmedabad</option><option>Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Subject <span>*</span></label>
+                <div class="subject-chips" id="chips">
+                  <div class="chip active" data-val="General Inquiry" onclick="selectChip(this)">General Inquiry</div>
+                  <div class="chip" data-val="Booking Support" onclick="selectChip(this)">Booking Support</div>
+                  <div class="chip" data-val="Fleet Enquiry" onclick="selectChip(this)">Fleet Enquiry</div>
+                  <div class="chip" data-val="Complaint" onclick="selectChip(this)">Complaint</div>
+                  <div class="chip" data-val="Partnership" onclick="selectChip(this)">Partnership</div>
+                  <div class="chip" data-val="Corporate" onclick="selectChip(this)">Corporate Rental</div>
+                </div>
+                <input type="hidden" id="cSubject" value="General Inquiry">
+              </div>
+              <div class="form-group">
+                <label>Your Message <span>*</span></label>
+                <textarea id="cMessage" placeholder="Tell us how we can help you..." required></textarea>
+              </div>
+              <button type="submit" class="submit-btn">
+                <span>Send Message</span>
+                <span class="btn-icon">→</span>
+              </button>
+            </form>
+          </div>
+          <!-- SUCCESS STATE -->
+          <div class="success-state" id="successState">
+            <div class="s-ico">✅</div>
+            <h3>Message Sent!</h3>
+            <p>Thank you for reaching out. Our team will get back to you within 30 minutes during business hours.</p>
+            <a href="#" onclick="resetForm(event)">Send Another Message</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="locations-section">
+  <div class="container">
+    <div class="sec-center reveal">
+      <div class="badge">Our Presence</div>
+      <h2>Available in <span>25+ Cities</span></h2>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-card reveal d1"><div class="loc-icon">🏙️</div><h4>Mumbai</h4><p>Andheri, BKC, Thane, Navi Mumbai</p><span class="loc-tag">HQ City</span></div>
+      <div class="loc-card reveal d2"><div class="loc-icon">🏛️</div><h4>Delhi NCR</h4><p>Connaught Place, Gurgaon, Noida</p><span class="loc-tag">Major Hub</span></div>
+      <div class="loc-card reveal d3"><div class="loc-icon">💻</div><h4>Bengaluru</h4><p>Koramangala, Whitefield, HSR Layout</p><span class="loc-tag">Major Hub</span></div>
+      <div class="loc-card reveal d4"><div class="loc-icon">🌟</div><h4>Hyderabad</h4><p>Hitech City, Banjara Hills, Jubilee Hills</p><span class="loc-tag">Available</span></div>
+      <div class="loc-card reveal d1"><div class="loc-icon">🎓</div><h4>Pune</h4><p>Koregaon Park, Hinjewadi, Viman Nagar</p><span class="loc-tag">Available</span></div>
+      <div class="loc-card reveal d2"><div class="loc-icon">🌊</div><h4>Chennai</h4><p>Anna Nagar, T Nagar, OMR</p><span class="loc-tag">Available</span></div>
+      <div class="loc-card reveal d3"><div class="loc-icon">🎨</div><h4>Kolkata</h4><p>Park Street, Salt Lake, Newtown</p><span class="loc-tag">Available</span></div>
+      <div class="loc-card reveal d4"><div class="loc-icon">🏗️</div><h4>Ahmedabad</h4><p>CG Road, SG Highway, Prahlad Nagar</p><span class="loc-tag">Available</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-block">
+  <div class="container">
+    <div class="sec-center reveal">
+      <div class="badge">Quick Answers</div>
+      <h2>Frequently Asked <span>Questions</span></h2>
+    </div>
+    <div class="faq-inner">
+      <div class="faq-item reveal">
+        <div class="faq-q">What documents do I need to rent a car?<span class="arrow">+</span></div>
+        <div class="faq-a">You need a valid driving licence (at least 1 year old), government-issued photo ID (Aadhaar/Passport), and a selfie. No lengthy paperwork — the entire verification is digital.</div>
+      </div>
+      <div class="faq-item reveal d1">
+        <div class="faq-q">Is there a minimum rental period?<span class="arrow">+</span></div>
+        <div class="faq-a">Our minimum rental period is 12 hours for daily rentals. Weekly and monthly plans start from 7 consecutive days. We also offer outstation and chauffeur-driven options with no minimums.</div>
+      </div>
+      <div class="faq-item reveal d2">
+        <div class="faq-q">Are there any hidden charges?<span class="arrow">+</span></div>
+        <div class="faq-a">Absolutely not. We operate on strict transparent pricing. The amount shown during booking is final. Fuel, tolls, and inter-city charges are clearly communicated before confirmation.</div>
+      </div>
+      <div class="faq-item reveal d3">
+        <div class="faq-q">What if I need to cancel or modify my booking?<span class="arrow">+</span></div>
+        <div class="faq-a">Free cancellation is available up to 2 hours before the rental start time. Modifications can be made anytime through the app or by calling support. Full refunds are processed within 3–5 business days.</div>
+      </div>
+      <div class="faq-item reveal d4">
+        <div class="faq-q">Do you offer corporate car rental plans?<span class="arrow">+</span></div>
+        <div class="faq-a">Yes! Our corporate plans include dedicated account managers, monthly billing, custom SLAs, and access to our entire premium fleet. Contact us at bookings@smartdrivepro.in for a custom quote.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="premium-footer">
+  <div class="container footer-grid">
+    <div class="footer-col"><h3>SmartDrive<span>Pro</span></h3><p>Premium car rentals with verified vehicles, transparent pricing, and seamless booking across India.</p></div>
+    <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="cars.html">Browse Cars</a></li><li><a href="compare.html">Compare Cars</a></li><li><a href="../index.html#how-it-works">How It Works</a></li><li><a href="contact.html">Locations</a></li></ul></div>
+    <div class="footer-col"><h4>Support</h4><ul><li><a href="contact.html">Contact Us</a></li><li><a href="#">FAQs</a></li><li><a href="#">Cancellation Policy</a></li><li><a href="#">Refund Policy</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li><li><a href="#">Security</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container bottom-inner">
+      <p>&copy; <span id="year"></span> SmartDrivePro. All rights reserved.</p>
+      <div class="social-icons"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">Twitter</a></div>
+    </div>
+  </div>
+</footer>
+<div id="pageTransition"></div>
+<script src="../assets/js/main.js"></script>
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:.1});
+  document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => io.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Subject chips
+  function selectChip(el) {
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('cSubject').value = el.dataset.val;
+  }
+
+  // Form submit
+  function submitContact(e) {
+    e.preventDefault();
+    const name = document.getElementById('cName').value.trim();
+    const email = document.getElementById('cEmail').value.trim();
+    const msg = document.getElementById('cMessage').value.trim();
+    if (!name || !email || !msg) { alert('Please fill all required fields.'); return; }
+    if (!/\S+@\S+\.\S+/.test(email)) { alert('Please enter a valid email address.'); return; }
+    document.getElementById('formView').style.display = 'none';
+    document.getElementById('successState').style.display = 'block';
+  }
+
+  function resetForm(e) {
+    e.preventDefault();
+    document.getElementById('contactForm').reset();
+    document.getElementById('formView').style.display = 'block';
+    document.getElementById('successState').style.display = 'none';
+  }
+</script>
+</body>
+</html>
